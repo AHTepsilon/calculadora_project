@@ -3,13 +3,12 @@ package com.example.calcular;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView contadorText;
     private TextView puntajeText;
     private Button boton;
-
     private Pregunta preguntaActual;
     private int tiempo;
+
     private int puntaje;
 
     @Override
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         tiempo = 30;
         contadorText.setText(" " + tiempo);
 
-        /*new Thread(
+        new Thread(
                 () ->
         {
             while(tiempo > 0)
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(
                             () ->
                             {
-                                contadorText.setText("" + contadorText);
+                                contadorText.setText("" + tiempo);
                             }
                     );
 
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        ).start();*/
+        ).start();
 
         generarNuevaPregunta();
 
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
             puntaje += 5;
+            puntajeText.setText("Puntaje: " + puntaje);
         }
 
         else
