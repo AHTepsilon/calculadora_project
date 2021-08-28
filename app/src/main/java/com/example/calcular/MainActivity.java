@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView contadorText;
     private TextView puntajeText;
     private Button boton;
+    private Button restartButton;
     private Pregunta preguntaActual;
     private int tiempo;
 
     private int puntaje;
+    private boolean restartReady;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,15 @@ public class MainActivity extends AppCompatActivity {
         contadorText = findViewById(R.id.contadorText);
         puntajeText = findViewById(R.id.puntajeText);
         boton = findViewById(R.id.boton);
+        restartButton = findViewById(R.id.restartButton);
 
         puntaje = 0;
         puntajeText.setText("Puntaje: " + puntaje);
 
         tiempo = 30;
         contadorText.setText(" " + tiempo);
+
+        restartReady = false;
 
         new Thread(
                 () ->
@@ -63,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
         ).start();
 
         generarNuevaPregunta();
+
+        if(tiempo == 0)
+        {
+            restartReady = true;
+        }
+
+        if(restartReady)
+        {
+            restartButton.setVisibility(View.VISIBLE);
+        }
+        else if(!restartReady)
+        {
+            restartButton.setVisibility(View.INVISIBLE);
+        }
 
         //preguntaText.setText(preguntaActual.getPregunta());
 

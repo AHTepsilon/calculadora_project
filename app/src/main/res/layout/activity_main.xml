@@ -67,4 +67,12 @@
         app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/restartButton"
+        android:layout_width="191dp"
+        android:layout_height="54dp"
+        android:text="Try Again"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="456dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
