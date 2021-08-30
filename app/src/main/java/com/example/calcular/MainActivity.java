@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     tiempo = 30;
                     puntaje = 0;
                     puntajeText.setText("Puntaje: " + puntaje);
+                    restartButton.setVisibility(View.INVISIBLE);
                 }
         );
 
