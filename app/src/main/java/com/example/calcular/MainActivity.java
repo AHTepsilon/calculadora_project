@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         tiempo = 30;
         contadorText.setText(" " + tiempo);
 
-        restartReady = false;
-
         new Thread(
                 () ->
         {
@@ -68,21 +66,19 @@ public class MainActivity extends AppCompatActivity {
         }
         ).start();
 
-        generarNuevaPregunta();
 
-        if(tiempo == 0)
-        {
-            restartReady = true;
-        }
-
-        if(restartReady)
+        /*if(restartReady)
         {
             restartButton.setVisibility(View.VISIBLE);
         }
         else if(!restartReady)
         {
             restartButton.setVisibility(View.INVISIBLE);
-        }
+        }*/
+
+        generarNuevaPregunta();
+
+        restartButton();
 
         //preguntaText.setText(preguntaActual.getPregunta());
 
@@ -91,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
             {
                 verificarRespuesta();
             }
+        );
+
+        if(tiempo < 1)
+        {
+            restartReady = true;
+            restartButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void restartButton()
+    {
+
+
+        boton.setOnClickListener(
+                (view) ->
+                {
+
+                }
         );
     }
 
