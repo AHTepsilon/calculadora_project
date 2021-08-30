@@ -54,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                             () ->
                             {
                                 contadorText.setText("" + tiempo);
+                                if(tiempo > 0)
+                                {
+                                    restartButton.setVisibility(View.INVISIBLE);
+                                }
+                                else
+                                {
+                                    restartButton.setVisibility(View.VISIBLE);
+                                }
                             }
                     );
 
@@ -66,19 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ).start();
 
-
-        /*if(restartReady)
-        {
-            restartButton.setVisibility(View.VISIBLE);
-        }
-        else if(!restartReady)
-        {
-            restartButton.setVisibility(View.INVISIBLE);
-        }*/
-
         generarNuevaPregunta();
-
-        restartButton();
 
         //preguntaText.setText(preguntaActual.getPregunta());
 
@@ -96,18 +92,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void restartButton()
-    {
-
-
-        boton.setOnClickListener(
-                (view) ->
-                {
-
-                }
-        );
-    }
-
     public void verificarRespuesta()
     {
         String respuestaTexto = respuestaUsuario.getText().toString();
@@ -123,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
+            puntaje += 2;
+            puntajeText.setText("Puntaje: " + puntaje);
         }
 
         generarNuevaPregunta();
