@@ -85,6 +85,15 @@ public class MainActivity extends AppCompatActivity {
             }
         );
 
+        restartButton.setOnClickListener(
+                (view) ->
+                {
+                    tiempo = 30;
+                    puntaje = 0;
+                    puntajeText.setText("Puntaje: " + puntaje);
+                }
+        );
+
         if(tiempo < 1)
         {
             restartReady = true;
@@ -97,17 +106,18 @@ public class MainActivity extends AppCompatActivity {
         String respuestaTexto = respuestaUsuario.getText().toString();
         int respuestaInt = (int) Integer.parseInt(respuestaTexto);
 
-        if(respuestaInt == preguntaActual.getRespuesta())
+        if(respuestaInt == preguntaActual.getRespuesta() && tiempo > 0)
         {
             Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show();
             puntaje += 5;
             puntajeText.setText("Puntaje: " + puntaje);
+            tiempo += 5;
         }
 
-        else
+        else if(respuestaInt != preguntaActual.getRespuesta() && tiempo > 0)
         {
             Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show();
-            puntaje += 2;
+            puntaje -= 2;
             puntajeText.setText("Puntaje: " + puntaje);
         }
 
