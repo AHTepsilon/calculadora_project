@@ -92,6 +92,38 @@ public class MainActivity extends AppCompatActivity {
                     puntaje = 0;
                     puntajeText.setText("Puntaje: " + puntaje);
                     restartButton.setVisibility(View.INVISIBLE);
+                    generarNuevaPregunta();
+
+                    new Thread(
+                            () ->
+                            {
+                                while(tiempo > 0)
+                                {
+                                    try {
+                                        tiempo--;
+                                        runOnUiThread(
+                                                () ->
+                                                {
+                                                    contadorText.setText("" + tiempo);
+                                                    if(tiempo > 0)
+                                                    {
+                                                        restartButton.setVisibility(View.INVISIBLE);
+                                                    }
+                                                    else
+                                                    {
+                                                        restartButton.setVisibility(View.VISIBLE);
+                                                    }
+                                                }
+                                        );
+
+                                        Thread.sleep(1000);
+                                    } catch (Exception e) {
+                                        Log.e("ERROR", e.toString());
+                                    }
+                                }
+
+                            }
+                    ).start();
                 }
         );
 
